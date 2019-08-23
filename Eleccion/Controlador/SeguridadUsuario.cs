@@ -21,11 +21,6 @@ namespace Seguridad
             {
                 respuesta = false;
             }
-            if (Session["CodigoSucursalEmpresa"] == null)
-            {
-                Session.Abandon();
-                respuesta = false;
-            }
             //Valida que si el usuario esta correctamente loggeado no pueda entrar a modulo no permitido
             if(respuesta == true)
             {

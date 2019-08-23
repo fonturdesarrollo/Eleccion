@@ -10,11 +10,11 @@ namespace Eleccion
 {
     public class Candidatos
     {
-        public static DataSet ObtenerCandiatos()
+        public static DataSet ObtenerCandiatos(int cedulaCandidato)
         {
             SqlParameter[] dbParams = new SqlParameter[]
                 {
-
+                    DBHelper.MakeParam("@CedulaCandidato", SqlDbType.Int, 0,cedulaCandidato),
                 };
             return DBHelper.ExecuteDataSet("usp_Candidato_ObtenerCandidatos", dbParams);
 

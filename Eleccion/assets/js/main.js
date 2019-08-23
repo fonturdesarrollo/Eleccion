@@ -123,7 +123,7 @@
 				return $a.prev('h2').html();
 			},
 			usePopupDefaultStyling: false,
-			usePopupCloser: false,
+			usePopupCloser: true,
 			usePopupCaption: true,
 			usePopupNav: true,
 			windowMargin: 50

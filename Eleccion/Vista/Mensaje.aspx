@@ -18,49 +18,24 @@
 
 		    <!-- Wrapper -->
 		    <div id="page-wrapper">
-				<!-- Main -->
-					<section id="main">
-					    <div id="banner">
-						    <div class="container">
-							    <div class="row">
-								    <div class="col-6 col-12-medium">
+			<!-- Header -->
+				    <section id="header">
+					    <div class="container">
+						    <div class="row">
+							    <div class="col-12">
+								    <!-- Logo -->
+									    <h1><a href="index.html" id="logo">¡Gracias por tu participación!</a></h1>
 
-									    <!-- Banner Copy -->
-										    <p>Gracias por por tu elección.</p>
-                                            <a href="Logout.aspx" class="button-large">Salir</a>
-								    </div>
-								    <div class="col-6 col-12-medium imp-medium">
-
-									    <!-- Banner Image -->
-										    <%--<a href="#" class="bordered-feature-image">--%>
-                                            <%--<img src="../eleccion_images/avatar.png" alt="" /></a>--%>
-								    </div>
+								    <!-- Nav -->
+									    <nav id="nav">
+										    <a href="Logout.aspx">Salir</a>
+									    </nav>
 							    </div>
 						    </div>
 					    </div>
-					</section>
+                   </section>
 
-				<section id="features">
-					<div class="container">
-						<div class="row">
-							<div class="col-3 col-6-medium col-12-small">
-
-								<!-- Feature #1 -->
-									<section>
-
-		
-									</section>
-
-							</div>
-
-
-						</div>
-					</div>
-				</section>
 			    </div>
             </form>
         </body>
     </html>
-
-
-</html>

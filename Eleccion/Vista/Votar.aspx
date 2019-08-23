@@ -13,48 +13,6 @@
 	    </head>
 
     <script type = "text/javascript">
-        $('document').ready(function () {
-            function GridViewRepeatColumns(gridviewid, repeatColumns) {
-                if (repeatColumns < 2) {
-                    alert('Invalid repeatColumns value');
-                    return;
-                }
-                var $gridview = $('#' + gridviewid);
-                var $newTable = $('<table></table>');
-
-                //Append first row in table
-                var $firstRow = $gridview.find('tr:eq(0)'),
-                    firstRowHTML = $firstRow.html(),
-                    colLength = $firstRow.children().length;
-
-                $newTable.append($firstRow);
-
-                //Append first row cells n times
-                for (var i = 0; i < repeatColumns - 1; i++) {
-                    $newTable.find('tr:eq(0)').append(firstRowHTML);
-                }
-
-                while ($gridview.find('tr').length > 0) {
-                    var $gridRow = $gridview.find('tr:eq(0)');
-                    $newTable.append($gridRow);
-                    for (var i = 0; i < repeatColumns - 1; i++) {
-                        if ($gridview.find('tr').length > 0) {
-                            $gridRow.append($gridview.find('tr:eq(0)').html());
-                            $gridview.find('tr:eq(0)').remove();
-                        }
-                        else {
-                            for (var j = 0; j < colLength; j++) {
-                                $gridRow.append('<td></td>');
-                            }
-                        }
-                    }
-                }
-                //update existing GridView
-                $gridview.html($newTable.html());
-            }
-
-            GridViewRepeatColumns("<%=gridDetalle.ClientID %>", 4);
-        });
 
         function Confirmacion() {
 
@@ -68,26 +26,24 @@
 
 		    <!-- Wrapper -->
 		    <div id="page-wrapper">
-				<!-- Main -->
-					<section id="main">
-					    <div id="banner">
-						    <div class="container">
-							    <div class="row">
-								    <div class="col-6 col-12-medium">
+			<!-- Header -->
+				<section id="header">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
 
-									    <!-- Banner Copy -->
-										    <p>Elige a la candidata de tu preferencia presionando el botón VOTAR.</p>
-								    </div>
-								    <div class="col-6 col-12-medium imp-medium">
+								<!-- Logo -->
+									<h1><a href="index.html" id="logo">Seleccione a su candidata presionando Votar</a></h1>
 
-									    <!-- Banner Image -->
-										    <%--<a href="#" class="bordered-feature-image">--%>
-                                            <%--<img src="../eleccion_images/avatar.png" alt="" /></a>--%>
-								    </div>
-							    </div>
-						    </div>
-					    </div>
-					</section>
+								<!-- Nav -->
+									<nav id="nav">
+										<a href="Logout.aspx">Salir</a>
+									</nav>
+
+							</div>
+						</div>
+					</div>
+               </section>
 
 				<section id="features">
 					<div class="container">

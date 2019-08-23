@@ -13,5 +13,13 @@ namespace Eleccion
         {
 
         }
+        protected void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            if(Voto.RestablecerVoto(txtCedula.Text) > 0 )
+            {
+                messageBox.ShowMessage("Voto restablecido");
+                txtCedula.Text = "";
+            }
+        }
     }
 }

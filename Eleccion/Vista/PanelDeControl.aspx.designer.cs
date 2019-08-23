@@ -10,7 +10,16 @@
 namespace Eleccion {
     
     
-    public partial class Mensaje {
+    public partial class PanelDeControl {
+        
+        /// <summary>
+        /// messageBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Teach.UCMessageBox messageBox;
         
         /// <summary>
         /// principal control.
@@ -22,12 +31,48 @@ namespace Eleccion {
         protected global::System.Web.UI.HtmlControls.HtmlForm principal;
         
         /// <summary>
-        /// lnkRestablecer control.
+        /// btnRestablecer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkRestablecer;
+        protected global::System.Web.UI.WebControls.Button btnRestablecer;
+        
+        /// <summary>
+        /// txtCedula control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCedula;
+        
+        /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
+        /// lnkCrearUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkCrearUsuario;
+        
+        /// <summary>
+        /// lnkResultados control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkResultados;
     }
 }

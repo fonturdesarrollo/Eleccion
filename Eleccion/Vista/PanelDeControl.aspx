@@ -1,20 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PanelDeControl.aspx.cs" Inherits="Eleccion.Mensaje" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PanelDeControl.aspx.cs" Inherits="Eleccion.PanelDeControl" %>
 <%@ Register TagPrefix="MsgBox" Src="~/Vista/UCMessageBox.ascx" TagName="UCMessageBox" %>
 
 <!DOCTYPE HTML>
-<!--
-	Verti by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Verti by HTML5 UP</title>
+		<title>Panel de Control</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../panel_assets/css/main.css" />
 	</head>
 	<body class="is-preload homepage">
+       <MsgBox:UCMessageBox ID="messageBox" runat="server" ></MsgBox:UCMessageBox>
         <form runat ="server" id ="principal">	
 		<div id="page-wrapper">
 
@@ -54,7 +50,11 @@
 											<header>
 												<h2>Restablecer voto</h2>
 											</header>
-                                            <asp:LinkButton runat="server" ID="lnkRestablecer" Text="Restablecer" PostBackUrl="~/Vista/Votar.aspx" CssClass="button large icon solid fa-arrow-circle-right" ></asp:LinkButton>
+                                            <asp:Button  runat="server" ID="btnRestablecer" Text="Restablecer"  CssClass="button large icon solid fa-arrow-circle-right"  OnClick="btnRestablecer_Click" />
+                                            <br />
+                                            <br />
+                                            <asp:TextBox runat="server" ID="txtCedula" Placeholder ="Cedula"></asp:TextBox>
+                                            <ASP:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" errormessage="Debe colocar la cedula"  controltovalidate="txtCedula" display="Dynamic" ForeColor ="Red"></ASP:RequiredFieldValidator>
 										</div>
 									</section>
 
@@ -65,9 +65,9 @@
 									<section class="box feature">
 										<div class="inner">
 											<header>
-												<h2>Crear usuario</h2>
+												<h2>Crear/Modificar usuario</h2>
 											</header>
-											<a href="#" class="button large icon solid fa-arrow-circle-right">Usuario</a>
+											<asp:LinkButton runat="server" ID="lnkCrearUsuario" Text="Usuarios" PostBackUrl="~/Vista/SeguridadUsuario.aspx" CssClass="button large icon solid fa-arrow-circle-right"  CausesValidation="false"></asp:LinkButton>
 										</div>
 									</section>
 
@@ -80,7 +80,7 @@
 											<header>
 												<h2>Resultados</h2>
 											</header>
-											<a href="#" class="button large icon solid fa-arrow-circle-right">Resultados</a>
+                                            <asp:LinkButton runat="server" ID="lnkResultados" Text="Resultados" PostBackUrl="~/Vista/Resultado.aspx" CssClass="button large icon solid fa-arrow-circle-right"  CausesValidation="false"></asp:LinkButton>
 										</div>
 									</section>
 							</div>

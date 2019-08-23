@@ -28,67 +28,73 @@
 
 								<article class="item thumb span-1">
 									<h2>MARLYN LÓPEZ</h2>
-									<a href="images/fulls/15314178.jpg" class="image"><img src="images/thumbs/15314178.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=15314178" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/15314178.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>ADRIANA VERGARA</h2>
 									<a href="images/fulls/14527479.jpg" class="image"><img src="images/thumbs/14527479.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=14527479" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/14527479.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-1">
 									<h2>STEFANY NARVAEZ</h2>
-									<a href="images/fulls/20781623.jpg" class="image"><img src="images/thumbs/20781623.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=20781623" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/20781623.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-1">
 									<h2>ESMARY VASQUEZ</h2>
-									<a href="images/fulls/20642686.jpg" class="image"><img src="images/thumbs/20642686.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=20642686" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/20642686.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-3">
 									<h2>ADONIS GONZALEZ</h2>
 									<a href="images/fulls/23615672.jpg" class="image"><img src="images/thumbs/23615672.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=23615672" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/23615672.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-1">
 									<h2>YORMIRA DIAZ</h2>
 									<a href="images/fulls/17652276.jpg" class="image"><img src="images/thumbs/17652276.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=17652276" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/17652276.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>SONIA ZAMBRANO</h2>
-									<a href="images/fulls/7958658.jpg" class="image"><img src="images/thumbs/7958658.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=7958658" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/7958658.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>WUENDY AÑANGUREN</h2>
 									<a href="images/fulls/13161037.jpg" class="image"><img src="images/thumbs/13161037.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=13161037" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/13161037.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>MARY TONITO</h2>
 									<a href="images/fulls/26685438.jpg" class="image"><img src="images/thumbs/26685438.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=26685438" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/26685438.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>JEPSYS MORAO</h2>
-									<a href="images/fulls/17641510.jpg" class="image"><img src="images/thumbs/17641510.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=17641510" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/17641510.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>NAZARETH ORIQUEN</h2>
-									<a href="images/fulls/27794854.jpg" class="image"><img src="images/thumbs/27794854.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=27794854" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/27794854.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>BELGICA HERNANDEZ</h2>
 									<a href="images/fulls/17920866.jpg" class="image"><img src="images/thumbs/17920866.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=17920866" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/17920866.jpg" alt=""></a>
 								</article>
 
 								<article class="item thumb span-2">
 									<h2>YELISBETH SILVA</h2>
-									<a href="images/fulls/24884822.jpg" class="image"><img src="images/thumbs/24884822.jpg" alt=""></a>
+                                    <a href="Vista/Votar.aspx?cedulaCandidato=24884822" class="image" data-poptrox="iframe,800x600"><img src="images/thumbs/24884822.jpg" alt=""></a>
 								</article>
 
 							</div>

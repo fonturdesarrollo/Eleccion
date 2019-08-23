@@ -109,6 +109,74 @@
     <Content Include="eleccion_images\pic05.jpg" />
     <Content Include="eleccion_images\pic06.jpg" />
     <Content Include="eleccion_images\pic07.jpg" />
+    <Content Include="estandar_assets\css\font-awesome.min.css" />
+    <Content Include="estandar_assets\css\ie8.css" />
+    <Content Include="estandar_assets\css\ie9.css" />
+    <Content Include="estandar_assets\css\main.css" />
+    <Content Include="estandar_assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="estandar_assets\js\ie\html5shiv.js" />
+    <Content Include="estandar_assets\js\ie\respond.min.js" />
+    <Content Include="estandar_assets\js\jquery.min.js" />
+    <Content Include="estandar_assets\js\main.js" />
+    <Content Include="estandar_assets\js\skel.min.js" />
+    <Content Include="estandar_assets\js\util.js" />
+    <Content Include="estandar_images\1.gif" />
+    <Content Include="estandar_images\asignar_estatus_icono.png" />
+    <Content Include="estandar_images\asignar_tecnico_icono.png" />
+    <Content Include="estandar_images\avatar.png" />
+    <Content Include="estandar_images\avatar1.png" />
+    <Content Include="estandar_images\avatar22.png" />
+    <Content Include="estandar_images\background.jpg" />
+    <Content Include="estandar_images\ball.gif" />
+    <Content Include="estandar_images\ball2.gif" />
+    <Content Include="estandar_images\banner_img.jpg" />
+    <Content Include="estandar_images\bg.jpg" />
+    <Content Include="estandar_images\bg1.jpg" />
+    <Content Include="estandar_images\bg2.jpg" />
+    <Content Include="estandar_images\bg3.jpg" />
+    <Content Include="estandar_images\bienvenida.jpg" />
+    <Content Include="estandar_images\boton.jpg" />
+    <Content Include="estandar_images\Calendar_scheduleHS.png" />
+    <Content Include="estandar_images\configuration.gif" />
+    <Content Include="estandar_images\consultabg01.jpg" />
+    <Content Include="estandar_images\consultabg01_.jpg" />
+    <Content Include="estandar_images\consultabg02.jpg" />
+    <Content Include="estandar_images\consultabg02_.jpg" />
+    <Content Include="estandar_images\consultabg03.jpg" />
+    <Content Include="estandar_images\consultabg03_.jpg" />
+    <Content Include="estandar_images\crm.gif" />
+    <Content Include="estandar_images\crm_top.gif" />
+    <Content Include="estandar_images\detail.png" />
+    <Content Include="estandar_images\download.png" />
+    <Content Include="estandar_images\edit-icon.gif" />
+    <Content Include="estandar_images\edit.png" />
+    <Content Include="estandar_images\eliminar.gif" />
+    <Content Include="estandar_images\eliminar.png" />
+    <Content Include="estandar_images\error-32x32.png" />
+    <Content Include="estandar_images\fondo.jpg" />
+    <Content Include="estandar_images\fondo2.jpg" />
+    <Content Include="estandar_images\fondo_3.png" />
+    <Content Include="estandar_images\fondo_bk.jpg" />
+    <Content Include="estandar_images\google.jpg" />
+    <Content Include="estandar_images\icon-garantia.png" />
+    <Content Include="estandar_images\imprimir.jpg" />
+    <Content Include="estandar_images\information-32x32.png" />
+    <Content Include="estandar_images\Invisible.png" />
+    <Content Include="estandar_images\ira25.gif" />
+    <Content Include="estandar_images\loading.gif" />
+    <Content Include="estandar_images\Logo-Fontur.png" />
+    <Content Include="estandar_images\logo_javi.jpg" />
+    <Content Include="estandar_images\mdt.jpg" />
+    <Content Include="estandar_images\minus.png" />
+    <Content Include="estandar_images\plus.png" />
+    <Content Include="estandar_images\pregunta.JPG" />
+    <Content Include="estandar_images\ReciboMDT.png" />
+    <Content Include="estandar_images\reporting.gif" />
+    <Content Include="estandar_images\reporting_top.gif" />
+    <Content Include="estandar_images\select.PNG" />
+    <Content Include="estandar_images\top_helper_1.png" />
+    <Content Include="estandar_images\top_helper_2.png" />
+    <Content Include="estandar_images\top_helper_3.png" />
     <Content Include="Galeria.aspx" />
     <Content Include="images\1.gif" />
     <Content Include="images\asignar_estatus_icono.png" />
@@ -217,14 +285,26 @@
     <Content Include="panel_images\pic05.jpg" />
     <Content Include="panel_images\pic06.jpg" />
     <Content Include="panel_images\pic07.jpg" />
+    <Content Include="Vista\Resultado.aspx" />
+    <Content Include="Styles\estilo.css" />
+    <Content Include="Styles\estiloindex.css" />
+    <Content Include="Styles\estilos.css" />
+    <Content Include="Styles\jquery-ui-1.8rc3.custom.css" />
+    <Content Include="Styles\simpleAutoComplete.css" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Vista\Autocomplete.aspx" />
     <Content Include="Vista\Logout.aspx" />
     <Content Include="Vista\PanelDeControl.aspx" />
     <Content Include="Vista\Mensaje.aspx" />
+    <Content Include="Vista\SeguridadUsuario.aspx" />
     <Content Include="Vista\UCMessageBox.ascx" />
     <Content Include="Vista\Votar.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controlador\Autocomplete.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Controlador\Candidatos.cs" />
     <Compile Include="Controlador\DBHelper.cs" />
     <Compile Include="Controlador\Login.cs" />
@@ -234,7 +314,9 @@
     <Compile Include="Controlador\SeguridadAuditoria.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Controlador\SeguridadUsuario.cs" />
+    <Compile Include="Controlador\SeguridadUsuario.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Controlador\Utils.cs" />
     <Compile Include="Controlador\XmlUtils.cs" />
     <Compile Include="Index.aspx.cs">
@@ -245,6 +327,20 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modelo\CSeguridad.cs" />
+    <Compile Include="Vista\Resultado.aspx.cs">
+      <DependentUpon>Resultado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Resultado.aspx.designer.cs">
+      <DependentUpon>Resultado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\Autocomplete.aspx.cs">
+      <DependentUpon>Autocomplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Autocomplete.aspx.designer.cs">
+      <DependentUpon>Autocomplete.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +371,13 @@
       <DependentUpon>Galeria.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\SeguridadUsuario.aspx.cs">
+      <DependentUpon>SeguridadUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\SeguridadUsuario.aspx.designer.cs">
+      <DependentUpon>SeguridadUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\UCMessageBox.ascx.cs">
       <DependentUpon>UCMessageBox.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -352,6 +455,38 @@
     <Content Include="loginassets\sass\libs\_vars.scss" />
     <Content Include="loginassets\sass\main.scss" />
     <Content Include="loginassets\sass\noscript.scss" />
+    <Content Include="estandar_assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="estandar_assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="estandar_assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="estandar_assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="estandar_assets\fonts\FontAwesome.otf" />
+    <Content Include="estandar_assets\sass\base\_page.scss" />
+    <Content Include="estandar_assets\sass\base\_typography.scss" />
+    <Content Include="estandar_assets\sass\components\_box.scss" />
+    <Content Include="estandar_assets\sass\components\_button.scss" />
+    <Content Include="estandar_assets\sass\components\_features.scss" />
+    <Content Include="estandar_assets\sass\components\_form.scss" />
+    <Content Include="estandar_assets\sass\components\_icon.scss" />
+    <Content Include="estandar_assets\sass\components\_image.scss" />
+    <Content Include="estandar_assets\sass\components\_list.scss" />
+    <Content Include="estandar_assets\sass\components\_mini-posts.scss" />
+    <Content Include="estandar_assets\sass\components\_posts.scss" />
+    <Content Include="estandar_assets\sass\components\_section.scss" />
+    <Content Include="estandar_assets\sass\components\_table.scss" />
+    <Content Include="estandar_assets\sass\ie8.scss" />
+    <Content Include="estandar_assets\sass\ie9.scss" />
+    <Content Include="estandar_assets\sass\layout\_banner.scss" />
+    <Content Include="estandar_assets\sass\layout\_footer.scss" />
+    <Content Include="estandar_assets\sass\layout\_header.scss" />
+    <Content Include="estandar_assets\sass\layout\_main.scss" />
+    <Content Include="estandar_assets\sass\layout\_menu.scss" />
+    <Content Include="estandar_assets\sass\layout\_sidebar.scss" />
+    <Content Include="estandar_assets\sass\layout\_wrapper.scss" />
+    <Content Include="estandar_assets\sass\libs\_functions.scss" />
+    <Content Include="estandar_assets\sass\libs\_mixins.scss" />
+    <Content Include="estandar_assets\sass\libs\_skel.scss" />
+    <Content Include="estandar_assets\sass\libs\_vars.scss" />
+    <Content Include="estandar_assets\sass\main.scss" />
     <None Include="packages.config" />
     <Content Include="panel_assets\sass\libs\_breakpoints.scss" />
     <Content Include="panel_assets\sass\libs\_functions.scss" />
