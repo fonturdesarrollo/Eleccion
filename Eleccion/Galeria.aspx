@@ -120,7 +120,7 @@
 				<!-- Footer -->
 					<section id="footer">
 						<section>
-                            <asp:LinkButton runat="server"  ID="lnkVotar" PostBackUrl="~/Vista/Votar.aspx" Text="Si deseas escoger una candidata, haz clic aquí" Font-Size="Large"></asp:LinkButton>
+                            <asp:LinkButton runat="server"  ID="lnkVotar" PostBackUrl="~/Vista/Logout.aspx" Text="Si deseas salir del sistema, haz clic aquí" Font-Size="Large"></asp:LinkButton>
 						</section>
                         <section>
                             <asp:LinkButton runat="server"  ID="lnkPanelDeControl" PostBackUrl="~/Vista/PanelDeControl.aspx" Text="Panel de Control" Font-Size="Large" Visible="false"></asp:LinkButton>
