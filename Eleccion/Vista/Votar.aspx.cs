@@ -15,7 +15,14 @@ namespace Eleccion
         {
             if (!IsPostBack)
             {
-                CargarCandidatos();
+                if(!Voto.EsVotoRegistrado(Convert.ToInt32(Session["UserId"])))
+                {
+                    CargarCandidatos();
+                }
+                else
+                {
+                    Response.Redirect("Mensaje.aspx");
+                }
             }
         }
 
@@ -48,7 +55,6 @@ namespace Eleccion
 
                         if (Voto.InsertarVoto(objetoVoto) > 0)
                         {
-                            Session.Remove("UserId");
                             Session.Remove("UserName");
                             Session.Remove("NombreCompletoUsuario");
                             Session.Remove("ClaveUsuario");

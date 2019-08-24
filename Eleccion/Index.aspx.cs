@@ -41,7 +41,6 @@ namespace Seguridad
             {
                 try
                 {
-
                     DataSet ds = Login.ValidarLogin(this.txtClave.Text);
                     DataTable dt = ds.Tables[0];
                     if (dt.Rows.Count == 0)
