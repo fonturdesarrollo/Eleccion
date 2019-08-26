@@ -178,6 +178,7 @@
     <Content Include="estandar_images\top_helper_2.png" />
     <Content Include="estandar_images\top_helper_3.png" />
     <Content Include="Galeria.aspx" />
+    <Content Include="Vista\Ganador.aspx" />
     <Content Include="images\1.gif" />
     <Content Include="images\asignar_estatus_icono.png" />
     <Content Include="images\asignar_tecnico_icono.png" />
@@ -299,6 +300,7 @@
     <Content Include="Vista\SeguridadUsuario.aspx" />
     <Content Include="Vista\UCMessageBox.ascx" />
     <Content Include="Vista\Votar.aspx" />
+    <Content Include="Vista\VotacionCerrada.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +321,14 @@
     </Compile>
     <Compile Include="Controlador\Utils.cs" />
     <Compile Include="Controlador\XmlUtils.cs" />
+    <Compile Include="Controlador\Generico.cs" />
+    <Compile Include="Vista\Ganador.aspx.cs">
+      <DependentUpon>Ganador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\Ganador.aspx.designer.cs">
+      <DependentUpon>Ganador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -393,6 +403,13 @@
       <DependentUpon>Votar.aspx</DependentUpon>
     </Compile>
     <Compile Include="Controlador\Voto.cs" />
+    <Compile Include="Vista\VotacionCerrada.aspx.cs">
+      <DependentUpon>VotacionCerrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\VotacionCerrada.aspx.designer.cs">
+      <DependentUpon>VotacionCerrada.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\sass\libs\_breakpoints.scss" />

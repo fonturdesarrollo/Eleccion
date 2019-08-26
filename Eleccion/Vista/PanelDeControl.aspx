@@ -54,24 +54,11 @@
                                             <br />
                                             <br />
                                             <asp:TextBox runat="server" ID="txtCedula" Placeholder ="Cedula"></asp:TextBox>
-                                            <ASP:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" errormessage="Debe colocar la cedula"  controltovalidate="txtCedula" display="Dynamic" ForeColor ="Red"></ASP:RequiredFieldValidator>
+                                            <%--<ASP:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" errormessage="Debe colocar la cedula"  controltovalidate="txtCedula" display="Dynamic" ForeColor ="Red"></ASP:RequiredFieldValidator>--%>
 										</div>
 									</section>
-
 							</div>
-							<div class="col-4 col-12-medium">
 
-								<!-- Box -->
-									<section class="box feature">
-										<div class="inner">
-											<header>
-												<h2>Crear/Modificar usuario</h2>
-											</header>
-											<asp:LinkButton runat="server" ID="lnkCrearUsuario" Text="Usuarios" PostBackUrl="~/Vista/SeguridadUsuario.aspx" CssClass="button large icon solid fa-arrow-circle-right"  CausesValidation="false"></asp:LinkButton>
-										</div>
-									</section>
-
-							</div>
 							<div class="col-4 col-12-medium">
 
 								<!-- Box -->
@@ -84,6 +71,37 @@
 										</div>
 									</section>
 							</div>
+
+							<div class="col-4 col-12-medium">
+								<!-- Box -->
+									<section class="box feature">
+										<div class="inner">
+											<header>
+												<h2>Crear/Modificar usuario</h2>
+											</header>
+											<asp:LinkButton runat="server" ID="lnkCrearUsuario" Text="Usuarios" PostBackUrl="~/Vista/SeguridadUsuario.aspx" CssClass="button large icon solid fa-arrow-circle-right"  CausesValidation="false"></asp:LinkButton>
+										</div>
+									</section>
+							</div>
+
+							<div class="col-4 col-12-medium">
+
+								<!-- Box -->
+									<section class="box feature">
+										<div class="inner">
+											<header>
+												<h2>Configurar estatus elección</h2>
+                                                <p>Abierta, Cerrada, Ganador</p>
+											</header>
+                                            <asp:Button  runat="server" ID="Button1" Text="Restablecer"  CssClass="button large icon solid fa-arrow-circle-right"  OnClick="Button1_Click" />
+                                            <br />
+                                            <br />
+                                            <asp:TextBox runat="server" ID="txtEstatus" Placeholder ="Estatus"></asp:TextBox>
+										</div>
+									</section>
+
+							</div>
+
 						</div>
 					</div>
 				</div>

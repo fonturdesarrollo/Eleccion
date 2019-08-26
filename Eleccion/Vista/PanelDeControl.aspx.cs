@@ -7,9 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace Eleccion
 {
-    public partial class PanelDeControl : Seguridad.SeguridadAuditoria
+    public partial class PanelDeControl : System.Web.UI.Page
     {
-        protected new void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
 
         }
@@ -19,6 +19,15 @@ namespace Eleccion
             {
                 messageBox.ShowMessage("Voto restablecido");
                 txtCedula.Text = "";
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Voto.ConfigurarEstatusEleccion("EstatusVotacion",txtEstatus.Text) > 0)
+            {
+                messageBox.ShowMessage("Elección Configurada");
+                txtEstatus.Text = "";
             }
         }
     }

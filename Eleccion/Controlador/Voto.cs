@@ -112,5 +112,32 @@ namespace Eleccion
             return DBHelper.ExecuteDataSet("usp_Voto_ObtenerResultados", dbParams);
 
         }
+        public static DataSet ObtenerGanador()
+        {
+            SqlParameter[] dbParams = new SqlParameter[]
+                {
+
+                };
+            return DBHelper.ExecuteDataSet("usp_Voto_ObtenerGanador", dbParams);
+        }
+
+        public static int ConfigurarEstatusEleccion(string descripcionGenerico, string valorGenerico)
+        {
+            try
+            {
+                SqlParameter[] dbParams = new SqlParameter[]
+                {
+                    DBHelper.MakeParam("@DescripcionGenerico", SqlDbType.VarChar, 0, descripcionGenerico),
+                    DBHelper.MakeParam("@ValorGenerico", SqlDbType.VarChar, 0, valorGenerico)
+                };
+
+                DBHelper.ExecuteScalar("usp_Voto_EstablecerEstatusEleccion", dbParams);
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
     }
 }

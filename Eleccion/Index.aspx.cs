@@ -20,7 +20,22 @@ namespace Seguridad
         {
             if (!IsPostBack)
             {
-                if(Request.Cookies["login"] != null)
+                SqlDataReader dr = Generico.ObtenerValorGenerico("EstatusVotacion");
+
+                while (dr.Read())
+                {
+                    if(dr["ValorGenerico"].ToString() =="Cerrada")
+                    {
+                        Response.Redirect("Vista/VotacionCerrada.aspx");
+                    }
+                    else if(dr["ValorGenerico"].ToString() == "Ganador")
+                    {
+                        Response.Redirect("Vista/Ganador.aspx");
+                    }
+                }
+                dr.Close();
+
+                if (Request.Cookies["login"] != null)
                 {
                     if (Request.Cookies["login"].Value != "")
                     {

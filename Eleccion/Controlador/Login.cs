@@ -10,7 +10,7 @@ namespace Seguridad
         {
             SqlParameter[] dbParams = new SqlParameter[]
                 {
-                    DBHelper.MakeParam("@ClaveUsuario", SqlDbType.Int, 0, sPassword)
+                    DBHelper.MakeParam("@ClaveUsuario", SqlDbType.VarChar, 0, sPassword)
                 };
             return DBHelper.ExecuteDataSet("usp_Login_ValidarLogin", dbParams);
         }

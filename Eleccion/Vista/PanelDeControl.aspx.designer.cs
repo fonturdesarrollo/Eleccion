@@ -49,13 +49,13 @@ namespace Eleccion {
         protected global::System.Web.UI.WebControls.TextBox txtCedula;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// lnkResultados control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.LinkButton lnkResultados;
         
         /// <summary>
         /// lnkCrearUsuario control.
@@ -67,12 +67,21 @@ namespace Eleccion {
         protected global::System.Web.UI.WebControls.LinkButton lnkCrearUsuario;
         
         /// <summary>
-        /// lnkResultados control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkResultados;
+        protected global::System.Web.UI.WebControls.Button Button1;
+        
+        /// <summary>
+        /// txtEstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtEstatus;
     }
 }
