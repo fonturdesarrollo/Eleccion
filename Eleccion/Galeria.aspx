@@ -22,7 +22,7 @@
 							<div class="items">
 
 								<div class="item intro span-2">
-                                    <h1>Bienvenid@ <%:Session["NombreCompletoUsuario"]%> a la Elección de la Señorita FONTUR 2019</h1>
+                                    <h2>Bienvenid@ <%:Session["NombreCompletoUsuario"]%> a la Elección de la Señorita FONTUR 2019</h2>
 
 								</div>
 

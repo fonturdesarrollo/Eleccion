@@ -81,12 +81,6 @@
     <Content Include="assets\webfonts\fa-brands-400.svg" />
     <Content Include="assets\webfonts\fa-regular-400.svg" />
     <Content Include="assets\webfonts\fa-solid-900.svg" />
-    <Content Include="Candidatos\01.jpg" />
-    <Content Include="Candidatos\02.jpg" />
-    <Content Include="Candidatos\03.jpg" />
-    <Content Include="Candidatos\04.jpg" />
-    <Content Include="Candidatos\05.jpg" />
-    <Content Include="Candidatos\06.jpg" />
     <Content Include="eleccion_assets\css\fontawesome-all.min.css" />
     <Content Include="eleccion_assets\css\images\bg01.png" />
     <Content Include="eleccion_assets\css\main.css" />
@@ -216,14 +210,6 @@
     <Content Include="images\fondo2.jpg" />
     <Content Include="images\fondo_3.png" />
     <Content Include="images\fondo_bk.jpg" />
-    <Content Include="images\fulls\01.jpg" />
-    <Content Include="images\fulls\02.jpg" />
-    <Content Include="images\fulls\03.jpg" />
-    <Content Include="images\fulls\04.jpg" />
-    <Content Include="images\fulls\05.jpg" />
-    <Content Include="images\fulls\06.jpg" />
-    <Content Include="images\fulls\07.jpg" />
-    <Content Include="images\fulls\08.jpg" />
     <Content Include="images\google.jpg" />
     <Content Include="images\icon-garantia.png" />
     <Content Include="images\imprimir.jpg" />
@@ -239,14 +225,6 @@
     <Content Include="images\reporting.gif" />
     <Content Include="images\reporting_top.gif" />
     <Content Include="images\select.PNG" />
-    <Content Include="images\thumbs\01.jpg" />
-    <Content Include="images\thumbs\02.jpg" />
-    <Content Include="images\thumbs\03.jpg" />
-    <Content Include="images\thumbs\04.jpg" />
-    <Content Include="images\thumbs\05.jpg" />
-    <Content Include="images\thumbs\06.jpg" />
-    <Content Include="images\thumbs\07.jpg" />
-    <Content Include="images\thumbs\08.jpg" />
     <Content Include="Index.aspx" />
     <Content Include="index.html" />
     <Content Include="js\EnterAsTab.js" />
@@ -531,7 +509,11 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Candidatos\" />
+    <Folder Include="images\fulls\" />
+    <Folder Include="images\thumbs\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -547,7 +529,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51161</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44322/</IISUrl>
+          <IISUrl>http://localhost:5241/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
