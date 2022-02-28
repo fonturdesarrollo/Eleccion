@@ -81,6 +81,7 @@
     <Content Include="assets\webfonts\fa-brands-400.svg" />
     <Content Include="assets\webfonts\fa-regular-400.svg" />
     <Content Include="assets\webfonts\fa-solid-900.svg" />
+    <Content Include="Eleccion-DB-Script.sql" />
     <Content Include="eleccion_assets\css\fontawesome-all.min.css" />
     <Content Include="eleccion_assets\css\images\bg01.png" />
     <Content Include="eleccion_assets\css\main.css" />
