@@ -32,7 +32,7 @@
 						<header>
 							<span class="avatar"><img src="images/avatar.png" alt="" /></span>
 							<h1>Bienvenido al Sistema</h1>
-                            <h2>Elección Señorita Fontur 2019</h2>
+                            <h2>Elección Señorita Fontur 2025</h2>
 							<p>Indique su cédula</p>
 						</header>
 

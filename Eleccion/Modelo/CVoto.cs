@@ -9,5 +9,6 @@ namespace Eleccion
     {
         public int candidatoID { get; set; }
         public int usuarioID { get; set; }
+        public List<int> tipoEleccionID { get; set; }
     }
 }

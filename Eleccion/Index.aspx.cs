@@ -24,11 +24,11 @@ namespace Seguridad
 
                 while (dr.Read())
                 {
-                    if(dr["ValorGenerico"].ToString() =="Cerrada")
+                    if(dr["ValorGenerico"].ToString().ToLower().Contains("cerr"))
                     {
                         Response.Redirect("Vista/VotacionCerrada.aspx");
                     }
-                    else if(dr["ValorGenerico"].ToString() == "Ganador")
+                    else if(dr["ValorGenerico"].ToString().ToLower().Contains("ganador"))
                     {
                         Response.Redirect("Vista/Ganador.aspx");
                     }

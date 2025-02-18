@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace Eleccion
 {
-    public partial class Resultado : Seguridad.SeguridadAuditoria
+    public partial class ResultadoSonrisa : Seguridad.SeguridadAuditoria
     {
         protected new void Page_Load(object sender, EventArgs e)
         {
@@ -21,7 +21,7 @@ namespace Eleccion
         {
             try
             {
-                DataSet ds = Voto.ObtenerResultados(1);
+                DataSet ds = Voto.ObtenerResultados(4);
                 this.gridDetalle.DataSource = ds.Tables[0];
                 this.gridDetalle.DataBind();
             }

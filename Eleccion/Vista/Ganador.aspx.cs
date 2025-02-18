@@ -21,7 +21,7 @@ namespace Eleccion
         {
             try
             {
-                DataSet ds = Voto.ObtenerGanador();
+                DataSet ds = Voto.ObtenerGanadora(1);
                 this.gridDetalle.DataSource = ds.Tables[0];
                 this.gridDetalle.DataBind();
             }

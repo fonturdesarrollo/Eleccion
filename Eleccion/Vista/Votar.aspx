@@ -1,29 +1,21 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Votar.aspx.cs" Inherits="Eleccion.Votar" %>
 <%@ Register TagPrefix="MsgBox" Src="~/Vista/UCMessageBox.ascx" TagName="UCMessageBox" %>
-
     <!DOCTYPE html>
-
     <html>
-	    <head>
-		    <title>Elección Señorita FONTUR 2019</title>
-		    <meta charset="utf-8" />
-		    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		    <link rel="stylesheet" href="../eleccion_assets/css/main.css" />
-		    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	    </head>
-
-    <script type = "text/javascript">
-
-        function Confirmacion() {
-
-            return confirm("¿Deseas votar por esta candidata?, este proceso no se podrá deshacer");
-        }
-           
-    </script>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Elección Señorita FONTUR 2025</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <script type="text/javascript">
+                function Confirmacion() {
+                    return confirm("¿Deseas votar por esta candidata?, este proceso no se podrá deshacer");
+                }
+            </script>
+        </head>
     <body>
 		<MsgBox:UCMessageBox ID="messageBox" runat="server" ></MsgBox:UCMessageBox>
             <form id="form1" runat="server">
-
 		    <!-- Wrapper -->
 		    <div id="page-wrapper">
 			<!-- Header -->
@@ -33,13 +25,11 @@
 							<div class="col-12">
 
 								<!-- Logo -->
-									<h1><a href="index.html" id="logo">Seleccione a su candidata presionando Votar</a></h1>
-
-								<!-- Nav -->
-									<nav id="nav">
-										<a href="Logout.aspx">Salir</a>
-									</nav>
-
+									<h1 style="text-align:center">
+                                        <a href="#" id="logo">
+                                            Marque la casilla de su preferencia y presione el botón VOTAR
+									    </a>
+									</h1>
 							</div>
 						</div>
 					</div>
@@ -49,33 +39,40 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-3 col-6-medium col-12-small">
-
 								<!-- Feature #1 -->
-									<section>
-				                       <asp:GridView ID="gridDetalle" runat="server" 
-						                        EmptyDataText="No existen Registros" 
-						                        GridLines="Horizontal" 
-						                        AutoGenerateColumns="False" OnRowCommand="gridDetalle_RowCommand">
-						                        <HeaderStyle  Font-Size="10px" />
-							                    <RowStyle  Font-Size="20px" />
-						                        <Columns>
-							                        <asp:TemplateField HeaderText="" HeaderStyle-Font-Size="Large" >
-								                        <ItemTemplate>
-                                                            <asp:Image runat="server"  ImageUrl='<%# Eval("FotoCandidato") %>' ControlStyle-Height="300" ControlStyle-Width="300"  />
-                                                            <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Label runat ="server" Text='<%# Eval("NombreCandidato") %>' ></asp:Label></pre>
-                                                            <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Label runat ="server" Text='<%# Eval("NombreGerencia") %>' ></asp:Label></pre>
-								                        </ItemTemplate>
-							                        </asp:TemplateField>
-							                        <asp:TemplateField>
-								                        <ItemTemplate>
-                                                            <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Button runat="server" ID="btnVotar" AlternateText="Votar"  OnClientClick="return Confirmacion();" ToolTip="Votar" Text="Votar"  CssClass="button-large" CommandName="VotarDetalle" CommandArgument='<%# Eval("CandidatoID") %>' CausesValidation ="false"/> </pre>
-								                        </ItemTemplate>
-							                        </asp:TemplateField>
-						                        </Columns>
-					                        </asp:GridView>
-		
-									</section>
-
+                                    <section>
+                                        <asp:GridView ID="gridDetalle" runat="server" 
+                                            EmptyDataText="No existen Registros" 
+                                            GridLines="Horizontal" 
+                                            AutoGenerateColumns="False" OnRowCommand="gridDetalle_RowCommand">
+                                            <HeaderStyle Font-Size="10px" />
+                                            <RowStyle Font-Size="20px"  />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="" HeaderStyle-Font-Size="Large">
+                                                    <ItemTemplate>
+                                                        <div style="display: flex; align-items: center;">
+                                                            <div>
+                                                                <asp:Image runat="server" ImageUrl='<%# Eval("FotoCandidato") %>' ControlStyle-Height="300" ControlStyle-Width="300" />
+                                                                <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Label runat="server" Text='<%# Eval("NombreCandidato") %>'></asp:Label></pre>
+                                                                <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Label runat="server" Text='<%# Eval("NombreGerencia") %>'></asp:Label></pre>
+                                                            </div>
+                                                            <div style="margin-left: 50px;">
+                                                                <asp:CheckBox runat="server" ID="reina" Text="Reina" />
+                                                                <asp:CheckBox runat="server" ID="simpatia" Text="Simpatia" />
+                                                                <asp:CheckBox runat="server" ID="actitud" Text="Actitud" />
+                                                                <asp:CheckBox runat="server" ID="sonrisa" Text="Sonrisa" />
+                                                            </div>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Button runat="server" ID="btnVotar" AlternateText="Votar" OnClientClick="return Confirmacion();" ToolTip="Votar" Text="Votar" CssClass="button-large" CommandName="VotarDetalle" CommandArgument='<%# Eval("CandidatoID") %>' CausesValidation="false" /></pre>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </section>
 							</div>
 						</div>
 					</div>
@@ -84,4 +81,3 @@
             </form>
         </body>
     </html>
-

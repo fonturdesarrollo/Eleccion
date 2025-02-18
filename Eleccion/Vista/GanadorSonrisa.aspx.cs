@@ -8,11 +8,11 @@ using System.Web.UI.WebControls;
 
 namespace Eleccion
 {
-    public partial class Resultado : Seguridad.SeguridadAuditoria
+    public partial class GanadorSonrisa : System.Web.UI.Page
     {
-        protected new void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 CargarResultado();
             }
@@ -21,7 +21,7 @@ namespace Eleccion
         {
             try
             {
-                DataSet ds = Voto.ObtenerResultados(1);
+                DataSet ds = Voto.ObtenerGanadora(4);
                 this.gridDetalle.DataSource = ds.Tables[0];
                 this.gridDetalle.DataBind();
             }

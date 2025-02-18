@@ -71,6 +71,14 @@ input, select, textarea {
 	appearance: none;
 }
 
+input[type="checkbox"] {
+	display: inline-block;
+	width: auto;
+	height: auto;
+	margin: 5px;
+}
+
+
 /* Basic */
 
 	html {

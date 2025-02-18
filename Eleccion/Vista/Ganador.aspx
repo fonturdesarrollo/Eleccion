@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Ganadora</title>
+		<title>Ganadora Reina</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../panel_assets/css/main.css" />
@@ -32,8 +32,15 @@
 								<!-- Box -->
 									<section class="box feature">
 										<div class="inner">
-											<header>
-												<h2>Ganadora</h2>
+											<div>
+												<asp:HyperLink runat="server" NavigateUrl="~/Vista/GanadorSimpatia.aspx" Text="Simpatía"></asp:HyperLink>
+												<asp:HyperLink runat="server" NavigateUrl="~/Vista/GanadorActitud.aspx" Text="Actitud"></asp:HyperLink>
+												<asp:HyperLink runat="server" NavigateUrl="~/Vista/GanadorSonrisa.aspx" Text="Sonrisa"></asp:HyperLink>
+												<br />
+												<br />
+											</div>
+											<header style="text-align:center">
+												<h2>Ganadora Reina</h2>
 											</header>
 				                               <asp:GridView ID="gridDetalle" runat="server" 
 						                                EmptyDataText="No existen Registros" 

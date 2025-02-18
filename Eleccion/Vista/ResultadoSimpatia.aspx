@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Resultado.aspx.cs" Inherits="Eleccion.Resultado" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ResultadoSimpatia.aspx.cs" Inherits="Eleccion.ResultadoSimpatia" %>
 <%@ Register TagPrefix="MsgBox" Src="~/Vista/UCMessageBox.ascx" TagName="UCMessageBox" %>
 
 <!DOCTYPE HTML>
@@ -46,13 +46,13 @@
 								<!-- Box -->
 									<section class="box feature">
 										<div class="inner">
-												<asp:HyperLink runat="server" NavigateUrl="~/Vista/ResultadoSimpatia.aspx" Text="Simpatía |"></asp:HyperLink>
+												<asp:HyperLink runat="server" NavigateUrl="~/Vista/Resultado.aspx" Text="Reina |"></asp:HyperLink>
 												<asp:HyperLink runat="server" NavigateUrl="~/Vista/ResultadoActitud.aspx" Text="Actitud |"></asp:HyperLink>
 												<asp:HyperLink runat="server" NavigateUrl="~/Vista/ResultadoSonrisa.aspx" Text="Sonrisa |"></asp:HyperLink>
 												<br />
 												<br />
 											<header style="text-align:center">
-												<h2>Candidatas Reina</h2>
+												<h2>Candidatas Simpatía</h2>
 											</header>
 				                               <asp:GridView ID="gridDetalle" runat="server" 
 						                                EmptyDataText="No existen Registros" 

@@ -173,6 +173,9 @@
     <Content Include="estandar_images\top_helper_2.png" />
     <Content Include="estandar_images\top_helper_3.png" />
     <Content Include="Galeria.aspx" />
+    <Content Include="Vista\GanadorActitud.aspx" />
+    <Content Include="Vista\GanadorSonrisa.aspx" />
+    <Content Include="Vista\GanadorSimpatia.aspx" />
     <Content Include="Vista\Ganador.aspx" />
     <Content Include="images\1.gif" />
     <Content Include="images\asignar_estatus_icono.png" />
@@ -265,6 +268,9 @@
     <Content Include="panel_images\pic05.jpg" />
     <Content Include="panel_images\pic06.jpg" />
     <Content Include="panel_images\pic07.jpg" />
+    <Content Include="Vista\ResultadoSonrisa.aspx" />
+    <Content Include="Vista\ResultadoActitud.aspx" />
+    <Content Include="Vista\ResultadoSimpatia.aspx" />
     <Content Include="Vista\Resultado.aspx" />
     <Content Include="Styles\estilo.css" />
     <Content Include="Styles\estiloindex.css" />
@@ -301,6 +307,27 @@
     <Compile Include="Controlador\Utils.cs" />
     <Compile Include="Controlador\XmlUtils.cs" />
     <Compile Include="Controlador\Generico.cs" />
+    <Compile Include="Vista\GanadorActitud.aspx.cs">
+      <DependentUpon>GanadorActitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GanadorActitud.aspx.designer.cs">
+      <DependentUpon>GanadorActitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GanadorSonrisa.aspx.cs">
+      <DependentUpon>GanadorSonrisa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GanadorSonrisa.aspx.designer.cs">
+      <DependentUpon>GanadorSonrisa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\GanadorSimpatia.aspx.cs">
+      <DependentUpon>GanadorSimpatia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\GanadorSimpatia.aspx.designer.cs">
+      <DependentUpon>GanadorSimpatia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Ganador.aspx.cs">
       <DependentUpon>Ganador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -316,6 +343,27 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modelo\CSeguridad.cs" />
+    <Compile Include="Vista\ResultadoSonrisa.aspx.cs">
+      <DependentUpon>ResultadoSonrisa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ResultadoSonrisa.aspx.designer.cs">
+      <DependentUpon>ResultadoSonrisa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ResultadoActitud.aspx.cs">
+      <DependentUpon>ResultadoActitud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ResultadoActitud.aspx.designer.cs">
+      <DependentUpon>ResultadoActitud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ResultadoSimpatia.aspx.cs">
+      <DependentUpon>ResultadoSimpatia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vista\ResultadoSimpatia.aspx.designer.cs">
+      <DependentUpon>ResultadoSimpatia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vista\Resultado.aspx.cs">
       <DependentUpon>Resultado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -503,6 +551,7 @@
     <Content Include="panel_assets\webfonts\fa-solid-900.ttf" />
     <Content Include="panel_assets\webfonts\fa-solid-900.woff" />
     <Content Include="panel_assets\webfonts\fa-solid-900.woff2" />
+    <None Include="Properties\PublishProfiles\Eleccion - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
