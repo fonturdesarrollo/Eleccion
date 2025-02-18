@@ -2,6 +2,7 @@
 using Seguridad.Clases;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,185 +13,274 @@ namespace Eleccion
 {
     public class Voto
     {
-        public static int InsertarVoto(CVoto objetoVoto)
-        {
-            int resultado = 0;
-            try
-            {
-				SqlParameter[] dbParamsDelete = new SqlParameter[]
+		public static int InsertarVoto(CVoto objetoVoto)
+		{
+			int resultado = 0;
+            string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-					DBHelper.MakeParam("@UsuarioVoto", SqlDbType.Int, 0, objetoVoto.usuarioID)
-				};
+					conn.Open();
 
-				foreach (var item in objetoVoto.tipoEleccionID)
-                {
-					SqlParameter[] dbParams = new SqlParameter[]
+					foreach (var item in objetoVoto.tipoEleccionID)
 					{
-					    DBHelper.MakeParam("@CandidatoID", SqlDbType.Int, 0, objetoVoto.candidatoID),
-					    DBHelper.MakeParam("@UsuarioID", SqlDbType.VarChar, 0, objetoVoto.usuarioID),
-					    DBHelper.MakeParam("@TipoEleccionID", SqlDbType.VarChar, 0, item),
-					};
+						using (SqlCommand cmd = new SqlCommand("usp_Voto_Insertar", conn))
+						{
+							cmd.CommandType = CommandType.StoredProcedure;
 
-					resultado = Convert.ToInt32(DBHelper.ExecuteScalar("usp_Voto_Insertar", dbParams));
+							cmd.Parameters.Add(new SqlParameter("@CandidatoID", SqlDbType.Int) { Value = objetoVoto.candidatoID });
+							cmd.Parameters.Add(new SqlParameter("@UsuarioID", SqlDbType.VarChar) { Value = objetoVoto.usuarioID });
+							cmd.Parameters.Add(new SqlParameter("@TipoEleccionID", SqlDbType.VarChar) { Value = item });
+
+							resultado = Convert.ToInt32(cmd.ExecuteScalar());
+						}
+					}
 				}
+			}
+			catch (Exception)
+			{
+				return 0;
+			}
 
+			return resultado;
+		}
 
-                return resultado;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-        }
-        public static bool EsVotoRegistrado(int codigoUsuario)
-        {
-            CSeguridad objetoSeguridad = new CSeguridad();
-            objetoSeguridad.SeguridadUsuarioDatosID = codigoUsuario;
-            if (objetoSeguridad.EsUsuarioAdministrador() == true)
-            {
-                return false;
-            }
+		public static bool EsVotoRegistrado(int codigoUsuario)
+		{
+			CSeguridad objetoSeguridad = new CSeguridad();
+			objetoSeguridad.SeguridadUsuarioDatosID = codigoUsuario;
+			if (objetoSeguridad.EsUsuarioAdministrador() == true)
+			{
+				return false;
+			}
 
-            bool resultado = false;
-            try
-            {
-                List<int> registrados = new List<int>();
+			bool resultado = false;
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
-                SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@UsuarioVoto", SqlDbType.Int, 0, codigoUsuario)
-                };
+			try
+			{
+				List<int> registrados = new List<int>();
 
-                SqlDataReader dr = DBHelper.ExecuteDataReader("usp_Voto_ObtenerVotoRegistrado", dbParams);
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
 
-                int agregado = 1;
-                while (dr.Read())
-                {
-                    registrados.Add(agregado);
-                    agregado++;
-                }
+					using (SqlCommand cmd = new SqlCommand("usp_Voto_ObtenerVotoRegistrado", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@UsuarioVoto", SqlDbType.Int) { Value = codigoUsuario });
 
-                if(registrados.Count >= 4)
-                {
-                    resultado = true;
+						using (SqlDataReader dr = cmd.ExecuteReader())
+						{
+							int agregado = 1;
+							while (dr.Read())
+							{
+								registrados.Add(agregado);
+								agregado++;
+							}
+
+							if (registrados.Count >= 4)
+							{
+								resultado = true;
+							}
+						}
+					}
 				}
+			}
+			catch (Exception)
+			{
+				return resultado;
+			}
 
-                return resultado;
-            }
-            catch (Exception e)
-            {
-                return resultado;
-            }
-        }
-        public static int RestablecerVoto(string cedulaVotante)
-        {
-            int codigoVotante = ObtenerIDVotante(cedulaVotante);
+			return resultado;
+		}
 
-            try
-            {
-                SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@UsuarioVoto", SqlDbType.Int, 0, codigoVotante)
-                };
+		public static int RestablecerVoto(string cedulaVotante)
+		{
+			int codigoVotante = ObtenerIDVotante(cedulaVotante);
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
-                DBHelper.ExecuteScalar("usp_Voto_Restablecer", dbParams);
-                return 1;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-        }
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
 
-        private static int ObtenerIDVotante(string cedulaVotante)
-        {
-            int resultado = 0;
-            try
-            {
-                SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@CedulaVotante", SqlDbType.VarChar, 0, cedulaVotante)
-                };
+					using (SqlCommand cmd = new SqlCommand("usp_Voto_Restablecer", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@UsuarioVoto", SqlDbType.Int) { Value = codigoVotante });
 
-                SqlDataReader dr = DBHelper.ExecuteDataReader("usp_Voto_ObtenerVotante", dbParams);
+						cmd.ExecuteScalar();
+					}
+				}
+				return 1;
+			}
+			catch (Exception)
+			{
+				return 0;
+			}
+		}
 
-                while (dr.Read())
-                {
-                    resultado =  Convert.ToInt32(dr["SeguridadUsuarioDatosID"]);
-                }
+		private static int ObtenerIDVotante(string cedulaVotante)
+		{
+			int resultado = 0;
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
-                return resultado;
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
-        }
-        public static DataSet ObtenerResultados(int tipoEleccionID)
-        {
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-					DBHelper.MakeParam("@TipoEleccionID", SqlDbType.Int, 0, tipoEleccionID)
-				};
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
 
-            return DBHelper.ExecuteDataSet("usp_Voto_ObtenerResultados", dbParams);
+					using (SqlCommand cmd = new SqlCommand("usp_Voto_ObtenerVotante", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@CedulaVotante", SqlDbType.VarChar) { Value = cedulaVotante });
 
-        }
+						using (SqlDataReader dr = cmd.ExecuteReader())
+						{
+							while (dr.Read())
+							{
+								resultado = Convert.ToInt32(dr["SeguridadUsuarioDatosID"]);
+							}
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
 
-        public static DataSet ObtenerGanadora(int tipoEleccionID)
-        {
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-					DBHelper.MakeParam("@TipoEleccionID", SqlDbType.Int, 0, tipoEleccionID)
-				};
-            return DBHelper.ExecuteDataSet("usp_Voto_ObtenerGanadora", dbParams);
-        }
+			return resultado;
+		}
+
+		public static DataSet ObtenerResultados(int tipoEleccionID)
+		{
+			DataSet dsResultados = new DataSet();
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					using (SqlCommand cmd = new SqlCommand("usp_Voto_ObtenerResultados", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@TipoEleccionID", SqlDbType.Int) { Value = tipoEleccionID });
+
+						using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+						{
+							da.Fill(dsResultados);
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+
+			return dsResultados;
+		}
+
+		public static DataSet ObtenerGanadora(int tipoEleccionID)
+		{
+			DataSet dsGanadora = new DataSet();
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					using (SqlCommand cmd = new SqlCommand("usp_Voto_ObtenerGanadora", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@TipoEleccionID", SqlDbType.Int) { Value = tipoEleccionID });
+
+						using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+						{
+							da.Fill(dsGanadora);
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+
+			return dsGanadora;
+		}
 
 		public static int ConfigurarEstatusEleccion(string descripcionGenerico, string valorGenerico)
-        {
-            try
-            {
-                SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@DescripcionGenerico", SqlDbType.VarChar, 0, descripcionGenerico),
-                    DBHelper.MakeParam("@ValorGenerico", SqlDbType.VarChar, 0, valorGenerico)
-                };
+		{
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
-                DBHelper.ExecuteScalar("usp_Voto_EstablecerEstatusEleccion", dbParams);
-                return 1;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-        }
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					using (SqlCommand cmd = new SqlCommand("usp_Voto_EstablecerEstatusEleccion", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@DescripcionGenerico", SqlDbType.VarChar) { Value = descripcionGenerico });
+						cmd.Parameters.Add(new SqlParameter("@ValorGenerico", SqlDbType.VarChar) { Value = valorGenerico });
+
+						cmd.ExecuteScalar();
+					}
+				}
+				return 1;
+			}
+			catch (Exception)
+			{
+				return 0;
+			}
+		}
 
 		public static List<int> ObtenerTipoVotoEleccionPorUsuario(int codigoUsuario)
 		{
 			CSeguridad objetoSeguridad = new CSeguridad();
 			objetoSeguridad.SeguridadUsuarioDatosID = codigoUsuario;
 			List<int> tipoVoto = new List<int>();
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
 			try
 			{
-				SqlParameter[] dbParams = new SqlParameter[]
+				using (SqlConnection conn = new SqlConnection(connectionString))
 				{
-					DBHelper.MakeParam("@UsuarioVoto", SqlDbType.Int, 0, codigoUsuario)
-				};
+					conn.Open();
 
-				SqlDataReader dr = DBHelper.ExecuteDataReader("usp_Voto_ObtenerVotoRegistrado", dbParams);
+					using (SqlCommand cmd = new SqlCommand("usp_Voto_ObtenerVotoRegistrado", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@UsuarioVoto", SqlDbType.Int) { Value = codigoUsuario });
 
-				while (dr.Read())
-				{
-                    tipoVoto.Add((int)dr["TipoEleccionID"]);
+						using (SqlDataReader dr = cmd.ExecuteReader())
+						{
+							while (dr.Read())
+							{
+								tipoVoto.Add((int)dr["TipoEleccionID"]);
+							}
+						}
+					}
 				}
-
-				return tipoVoto.ToList();
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				return tipoVoto;
 			}
+
+			return tipoVoto;
 		}
 	}
 }

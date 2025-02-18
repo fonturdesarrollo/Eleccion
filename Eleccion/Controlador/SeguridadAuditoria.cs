@@ -2,6 +2,7 @@
 using Seguridad.Clases;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace Seguridad
             if (this.Session["UserID"] == null)
             {
                 AuditarMovimiento(HttpContext.Current.Request.Url.AbsolutePath, "Intento de entrar en pantalla sin iniciar sesión", System.Net.Dns.GetHostEntry(Request.ServerVariables["REMOTE_HOST"]).HostName, 0);
-                Server.Transfer("/Vista/Logout.aspx");
+                Server.Transfer("Index.aspx");
             }
             else
             {
@@ -43,8 +44,8 @@ namespace Seguridad
                         if (objetoSeguridad.EsAccesoPermitido(CodigoObjetoSegunUrl(HttpContext.Current.Request.Url.AbsolutePath)) == false)
                         {
                             AuditarMovimiento(HttpContext.Current.Request.Url.AbsolutePath, "Intento de entrar en pantalla sin tener permiso", System.Net.Dns.GetHostEntry(Request.ServerVariables["REMOTE_HOST"]).HostName, Convert.ToInt32(this.Session["UserId"].ToString()));
-                            Server.Transfer("Logout.aspx");
-                        }
+							Server.Transfer("Index.aspx");
+						}
                     }
                 }
 
@@ -75,32 +76,41 @@ namespace Seguridad
             }
             return resultado;
         }
-        public static void AuditarMovimiento(string nombreFormulario, string descripcionProceso, string nombreEquipoCliente, int codigoUsuario)
-        {
-            try
-            {
-                string nombreServidor = System.Net.Dns.GetHostName();
-                System.Net.IPHostEntry ipServidor = System.Net.Dns.GetHostEntry(nombreServidor);
-                System.Net.IPAddress[] addr = ipServidor.AddressList;
-                string ipEquipoCliente = addr[1].ToString();
-                SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@SeguridadUsuarioDatosID", SqlDbType.Int, 0, codigoUsuario),
-                    DBHelper.MakeParam("@NombreFormulario", SqlDbType.VarChar, 0, nombreFormulario),
-                    DBHelper.MakeParam("@DescripcionProceso", SqlDbType.VarChar, 0, descripcionProceso),
-                    DBHelper.MakeParam("@NombreEquipoCliente", SqlDbType.VarChar, 0, nombreEquipoCliente),
-                    DBHelper.MakeParam("@IPEquipoCliente", SqlDbType.VarChar, 0, ipEquipoCliente)
-                };
+		public static void AuditarMovimiento(string nombreFormulario, string descripcionProceso, string nombreEquipoCliente, int codigoUsuario)
+		{
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
-                DBHelper.ExecuteScalar("usp_SeguridadAuditoria_AuditarMovimiento", dbParams);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+			try
+			{
+				string nombreServidor = System.Net.Dns.GetHostName();
+				System.Net.IPHostEntry ipServidor = System.Net.Dns.GetHostEntry(nombreServidor);
+				System.Net.IPAddress[] addr = ipServidor.AddressList;
+				string ipEquipoCliente = addr[1].ToString();
 
-        }
-        public static DataSet ObtenerMovimientosAuditoria()
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					using (SqlCommand cmd = new SqlCommand("usp_SeguridadAuditoria_AuditarMovimiento", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@SeguridadUsuarioDatosID", SqlDbType.Int) { Value = codigoUsuario });
+						cmd.Parameters.Add(new SqlParameter("@NombreFormulario", SqlDbType.VarChar) { Value = nombreFormulario });
+						cmd.Parameters.Add(new SqlParameter("@DescripcionProceso", SqlDbType.VarChar) { Value = descripcionProceso });
+						cmd.Parameters.Add(new SqlParameter("@NombreEquipoCliente", SqlDbType.VarChar) { Value = nombreEquipoCliente });
+						cmd.Parameters.Add(new SqlParameter("@IPEquipoCliente", SqlDbType.VarChar) { Value = ipEquipoCliente });
+
+						cmd.ExecuteScalar();
+					}
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
+		public static DataSet ObtenerMovimientosAuditoria()
         {
             SqlParameter[] dbParams = new SqlParameter[]
                 {

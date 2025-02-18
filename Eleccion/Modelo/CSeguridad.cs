@@ -1,5 +1,6 @@
 ﻿using Database.Classes;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -226,53 +227,79 @@ namespace Seguridad.Clases
                 _empresaSucursalID = value;
             }
         }
-        public bool EsAccesoPermitido(int seguridadObjetoID)
-        {
-            bool esPermitido =false;
-            try
-            {
-                SqlParameter[] dbParams = new SqlParameter[]
-                    {
-                    DBHelper.MakeParam("@SeguridadUsuarioDatosID", SqlDbType.Int, 0, this.SeguridadUsuarioDatosID),
-                    DBHelper.MakeParam("SeguridadObjetoID", SqlDbType.Int, 0, seguridadObjetoID),
-                    };
+		public bool EsAccesoPermitido(int seguridadObjetoID)
+		{
+			bool esPermitido = false;
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
-                DataSet ds = DBHelper.ExecuteDataSet("[usp_Seguridad_ObtenerAccesoObjeto]", dbParams);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    esPermitido = true;
-                }
-            }
-            catch (Exception)
-            {
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
 
-                throw;
-            }
-            return esPermitido;
-        }
-        public bool EsUsuarioAdministrador()
-        {
-            bool esPermitido = false;
-            try
-            {
-                SqlParameter[] dbParams = new SqlParameter[]
-                    {
-                    DBHelper.MakeParam("@SeguridadUsuarioDatosID", SqlDbType.Int, 0, this.SeguridadUsuarioDatosID)
-                   };
+					using (SqlCommand cmd = new SqlCommand("[usp_Seguridad_ObtenerAccesoObjeto]", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@SeguridadUsuarioDatosID", SqlDbType.Int) { Value = this.SeguridadUsuarioDatosID });
+						cmd.Parameters.Add(new SqlParameter("@SeguridadObjetoID", SqlDbType.Int) { Value = seguridadObjetoID });
 
-                DataSet ds = DBHelper.ExecuteDataSet("[usp_Seguridad_ObtenerAdministrador]", dbParams);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    esPermitido = true;
-                }
-            }
-            catch (Exception)
-            {
+						using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+						{
+							DataSet ds = new DataSet();
+							da.Fill(ds);
 
-                throw;
-            }
-            return esPermitido;
-        }
+							if (ds.Tables[0].Rows.Count > 0)
+							{
+								esPermitido = true;
+							}
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
 
-    }
+			return esPermitido;
+		}
+
+		public bool EsUsuarioAdministrador()
+		{
+			bool esPermitido = false;
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					using (SqlCommand cmd = new SqlCommand("[usp_Seguridad_ObtenerAdministrador]", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@SeguridadUsuarioDatosID", SqlDbType.Int) { Value = this.SeguridadUsuarioDatosID });
+
+						using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+						{
+							DataSet ds = new DataSet();
+							da.Fill(ds);
+
+							if (ds.Tables[0].Rows.Count > 0)
+							{
+								esPermitido = true;
+							}
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+
+			return esPermitido;
+		}
+	}
 }

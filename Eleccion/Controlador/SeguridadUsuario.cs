@@ -2,6 +2,7 @@
 using Seguridad.Clases;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -47,76 +48,74 @@ namespace Seguridad
             }
             return respuesta;
         }
-        public static int InsertarUsuario(CSeguridad objetoSeguridad)
-        {
-            SqlParameter[] dbParams = new SqlParameter[]
-            {
-                    DBHelper.MakeParam("SeguridadUsuarioDatosID", SqlDbType.Int, 0, objetoSeguridad.SeguridadUsuarioDatosID),
-                    DBHelper.MakeParam("@LoginUsuario", SqlDbType.VarChar, 0, objetoSeguridad.LoginUsuario),
-                    DBHelper.MakeParam("@ClaveUsuario", SqlDbType.VarChar, 0, objetoSeguridad.ClaveUsuario),
-                    DBHelper.MakeParam("@NombreCompleto", SqlDbType.VarChar, 0, objetoSeguridad.NombreCompleto),
-                    DBHelper.MakeParam("@DescripcionUsuario", SqlDbType.VarChar, 0, objetoSeguridad.DescripcionUsuario),
-                    DBHelper.MakeParam("@SeguridadGrupoID", SqlDbType.Int, 0, objetoSeguridad.SeguridadGrupoID),
-                    DBHelper.MakeParam("@UsuarioTecnico", SqlDbType.Bit, 0, objetoSeguridad.UsuarioTecnico),
-                    DBHelper.MakeParam("@EstatusUsuario", SqlDbType.VarChar, 0,objetoSeguridad.EstatusUsuario),
-                    DBHelper.MakeParam("@EmpresaSucursalID", SqlDbType.Int, 0,objetoSeguridad.EmpresaSucursalID)
-            };
-            if (objetoSeguridad.SeguridadUsuarioDatosID == 0)
-            {
-                return Convert.ToInt32(DBHelper.ExecuteScalar("[usp_SeguridadUsuario_Insertar]", dbParams));
-            }
-            else
-            {
-                return Convert.ToInt32(DBHelper.ExecuteScalar("[usp_SeguridadUsuario_Actualizar]", dbParams));
-            }
-        }
-        public static DataSet ObtenerLogin(string loginDeUsuario)
-        {
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@LoginUsuario", SqlDbType.VarChar, 0, loginDeUsuario),
-                };
+		public static int InsertarUsuario(CSeguridad objetoSeguridad)
+		{
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
 
-            return DBHelper.ExecuteDataSet("usp_SeguridadUsuario_ObtenerLogin", dbParams);
-        }
-        public static SqlDataReader ObtenerEmpresas(int usuarioID)
-        {
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@SeguridadUsuarioDatosID", SqlDbType.Int, 0, usuarioID),
-                };
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
 
-            return DBHelper.ExecuteDataReader("usp_Login_ObtenerEmpresas", dbParams);
-        }
-        public static SqlDataReader ObtenerLogoEmpresa(int empresaID)
-        {
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@EmpresaID", SqlDbType.Int, 0, empresaID),
-                };
+					string storedProcedure = objetoSeguridad.SeguridadUsuarioDatosID == 0
+						? "[usp_SeguridadUsuario_Insertar]"
+						: "[usp_SeguridadUsuario_Actualizar]";
 
-            return DBHelper.ExecuteDataReader("usp_Login_ObtenerLogoEmpresa", dbParams);
-        }
-        public static int ObtenerCodigoEmpresa(int codigoSucursal)
-        {
-            int codigoEmpresa = 0;
-            SqlDataReader dr;
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@EmpresaSucursalID", SqlDbType.Int, 0, codigoSucursal),
-                };
+					using (SqlCommand cmd = new SqlCommand(storedProcedure, conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@SeguridadUsuarioDatosID", SqlDbType.Int) { Value = objetoSeguridad.SeguridadUsuarioDatosID });
+						cmd.Parameters.Add(new SqlParameter("@LoginUsuario", SqlDbType.VarChar) { Value = objetoSeguridad.LoginUsuario });
+						cmd.Parameters.Add(new SqlParameter("@ClaveUsuario", SqlDbType.VarChar) { Value = objetoSeguridad.ClaveUsuario });
+						cmd.Parameters.Add(new SqlParameter("@NombreCompleto", SqlDbType.VarChar) { Value = objetoSeguridad.NombreCompleto });
+						cmd.Parameters.Add(new SqlParameter("@DescripcionUsuario", SqlDbType.VarChar) { Value = objetoSeguridad.DescripcionUsuario });
+						cmd.Parameters.Add(new SqlParameter("@SeguridadGrupoID", SqlDbType.Int) { Value = objetoSeguridad.SeguridadGrupoID });
+						cmd.Parameters.Add(new SqlParameter("@UsuarioTecnico", SqlDbType.Bit) { Value = objetoSeguridad.UsuarioTecnico });
+						cmd.Parameters.Add(new SqlParameter("@EstatusUsuario", SqlDbType.VarChar) { Value = objetoSeguridad.EstatusUsuario });
+						cmd.Parameters.Add(new SqlParameter("@EmpresaSucursalID", SqlDbType.Int) { Value = objetoSeguridad.EmpresaSucursalID });
 
-            dr = DBHelper.ExecuteDataReader("usp_Login_ObtenerCodigoEmpresa", dbParams);
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    codigoEmpresa = dr.GetInt32(1);
-                }
-            }
-            dr.Close();
-            return codigoEmpresa;
-        }
+						return Convert.ToInt32(cmd.ExecuteScalar());
+					}
+				}
+			}
+			catch (Exception)
+			{
+				return 0;
+			}
+		}
+
+		public static DataSet ObtenerLogin(string loginDeUsuario)
+		{
+			DataSet dsLogin = new DataSet();
+			string connectionString = ConfigurationManager.AppSettings.Get("connectionString");
+
+			try
+			{
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					conn.Open();
+
+					using (SqlCommand cmd = new SqlCommand("usp_SeguridadUsuario_ObtenerLogin", conn))
+					{
+						cmd.CommandType = CommandType.StoredProcedure;
+						cmd.Parameters.Add(new SqlParameter("@LoginUsuario", SqlDbType.VarChar) { Value = loginDeUsuario });
+
+						using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+						{
+							da.Fill(dsLogin);
+						}
+					}
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+
+			return dsLogin;
+		}
+
         public static DataSet ObtenerSucursalesDeUsuario(int codigoUsuario, int codigoEmpresa)
         {
             SqlParameter[] dbParams = new SqlParameter[]
@@ -135,74 +134,6 @@ namespace Seguridad
                 };
 
             return DBHelper.ExecuteDataSet("usp_SeguridadUsuario_EliminarSucursalUsuario", dbParams);
-        }
-
-        public static int GrupoIDUsuarioLogin(int codigoUsuario)
-        {
-            SqlDataReader dr;
-            int codigoGrupo = 0;
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@SeguridadUsuarioDatosID", SqlDbType.Int, 0, codigoUsuario),
-                };
-
-            dr= DBHelper.ExecuteDataReader("usp_SeguridadUsuario_ObtenerNombreGrupoPorIDUsuario", dbParams);
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    codigoGrupo = Convert.ToInt32(dr["SeguridadGrupoID"]);
-                }
-            }
-            dr.Close();
-            return  codigoGrupo;
-        }
-
-        public static int ObjetoIDUsuarioLogin(int codigoUsuario)
-        {
-            SqlDataReader dr;
-            int codigoObjeto = 0;
-            SqlParameter[] dbParams = new SqlParameter[]
-                {
-                    DBHelper.MakeParam("@SeguridadUsuarioDatosID", SqlDbType.Int, 0, codigoUsuario),
-                };
-
-            dr = DBHelper.ExecuteDataReader("usp_SeguridadUsuario_ObtenerNombreObjetoPorIDUsuario", dbParams);
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    codigoObjeto = Convert.ToInt32(dr["SeguridadObjetoID"]);
-                }
-            }
-            dr.Close();
-            return codigoObjeto;
-        }
-
-        public void MantenerSesionEnCookie(string textoACifrar, string nombreCookie)
-        {
-
-            //var textoCookie = Encoding.UTF8.GetBytes(textoACifrar);
-            //var valorCifrado = Convert.ToBase64String(MachineKey.Protect(textoCookie, "CookieProtegida"));
-
-            ////Create cookie object and pass name of the cookie and value to be stored
-            //HttpCookie cookieObject = new HttpCookie(nombreCookie, valorCifrado);
-
-            ////Set expiry time cookie
-            //cookieObject.Expires.AddDays(360);
-
-            ////Add cookie to cookie collection
-            //Response.Cookies.Add(cookieObject);
-        }
-        public string CookieDecifrada(string nombreCookie)
-        {
-            //Decode from Base 64 with the hash ProetectedCookie
-            //var bytes = Convert.FromBase64String(Request.Cookies[nombreCookie].Value);
-           // var output = MachineKey.Unprotect(bytes, "CookieProtegida");
-
-            //string result = Encoding.UTF8.GetString(output);
-
-            return "";
         }
 
     }

@@ -18,34 +18,35 @@ namespace Seguridad
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                SqlDataReader dr = Generico.ObtenerValorGenerico("EstatusVotacion");
+			if (!IsPostBack)
+			{
+				DataTable dt = Generico.ObtenerValorGenerico("EstatusVotacion");
 
-                while (dr.Read())
-                {
-                    if(dr["ValorGenerico"].ToString().ToLower().Contains("cerr"))
-                    {
-                        Response.Redirect("Vista/VotacionCerrada.aspx");
-                    }
-                    else if(dr["ValorGenerico"].ToString().ToLower().Contains("ganador"))
-                    {
-                        Response.Redirect("Vista/Ganador.aspx");
-                    }
-                }
-                dr.Close();
+				foreach (DataRow row in dt.Rows)
+				{
+					if (row["ValorGenerico"].ToString().ToLower().Contains("cerr"))
+					{
+						Response.Redirect("Vista/VotacionCerrada.aspx");
+						break;
+					}
+					else if (row["ValorGenerico"].ToString().ToLower().Contains("ganador"))
+					{
+						Response.Redirect("Vista/Ganador.aspx");
+						break;
+					}
+				}
 
-                if (Request.Cookies["login"] != null)
-                {
-                    if (Request.Cookies["login"].Value != "")
-                    {
-                        ProcesoLogin();
-                    }
-                }
-            }
-        }
+				if (Request.Cookies["login"] != null)
+				{
+					if (Request.Cookies["login"].Value != "")
+					{
+						ProcesoLogin();
+					}
+				}
+			}
+		}
 
-        protected void btnAceptar_Click(object sender, EventArgs e)
+		protected void btnAceptar_Click(object sender, EventArgs e)
         {
             ProcesoLogin();
         }

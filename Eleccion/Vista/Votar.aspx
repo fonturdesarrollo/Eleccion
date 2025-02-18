@@ -40,36 +40,37 @@
 						<div class="row">
 							<div class="col-3 col-6-medium col-12-small">
 								<!-- Feature #1 -->
-                                    <section>
+                                    <section>                                        
                                         <asp:GridView ID="gridDetalle" runat="server" 
                                             EmptyDataText="No existen Registros" 
                                             GridLines="Horizontal" 
                                             AutoGenerateColumns="False" OnRowCommand="gridDetalle_RowCommand">
-                                            <HeaderStyle Font-Size="10px" />
+                                            <HeaderStyle Font-Size="10px" />    
                                             <RowStyle Font-Size="20px"  />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="" HeaderStyle-Font-Size="Large">
                                                     <ItemTemplate>
-                                                        <div style="display: flex; align-items: center;">
+                                                        <div style="display: flex; align-items: center; width:680px; height:450px">
                                                             <div>
-                                                                <asp:Image runat="server" ImageUrl='<%# Eval("FotoCandidato") %>' ControlStyle-Height="300" ControlStyle-Width="300" />
+                                                                <asp:Image runat="server" ImageUrl='<%# Eval("FotoCandidato") %>' ControlStyle-Height="310" ControlStyle-Width="270" />
                                                                 <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Label runat="server" Text='<%# Eval("NombreCandidato") %>'></asp:Label></pre>
                                                                 <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Label runat="server" Text='<%# Eval("NombreGerencia") %>'></asp:Label></pre>
+                                                                <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Button runat="server" ID="btnVotar" AlternateText="Votar" OnClientClick="return Confirmacion();" ToolTip="Votar" Text="Votar" CssClass="button-large" CommandName="VotarDetalle" CommandArgument='<%# Eval("CandidatoID") %>' CausesValidation="false" /></pre>
                                                             </div>
                                                             <div style="margin-left: 50px;">
-                                                                <asp:CheckBox runat="server" ID="reina" Text="Reina" />
-                                                                <asp:CheckBox runat="server" ID="simpatia" Text="Simpatia" />
-                                                                <asp:CheckBox runat="server" ID="actitud" Text="Actitud" />
-                                                                <asp:CheckBox runat="server" ID="sonrisa" Text="Sonrisa" />
+                                                                <asp:CheckBox runat="server" ID="reina" Text="Reina" /><br />
+                                                                <asp:CheckBox runat="server" ID="simpatia" Text="Simpatia" /><br />
+                                                                <asp:CheckBox runat="server" ID="actitud" Text="Actitud" /><br />
+                                                                <asp:CheckBox runat="server" ID="sonrisa" Text="Sonrisa" />      <br />                                                          
                                                             </div>
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:TemplateField>
+<%--                                                <asp:TemplateField>
                                                     <ItemTemplate>
                                                         <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Button runat="server" ID="btnVotar" AlternateText="Votar" OnClientClick="return Confirmacion();" ToolTip="Votar" Text="Votar" CssClass="button-large" CommandName="VotarDetalle" CommandArgument='<%# Eval("CandidatoID") %>' CausesValidation="false" /></pre>
                                                     </ItemTemplate>
-                                                </asp:TemplateField>
+                                                </asp:TemplateField>--%>
                                             </Columns>
                                         </asp:GridView>
                                     </section>

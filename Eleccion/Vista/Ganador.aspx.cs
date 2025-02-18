@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,12 +13,31 @@ namespace Eleccion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                CargarResultado();
-            }
-        }
-        private void CargarResultado()
+			if (!IsPostBack)
+			{
+				DataTable dt = Generico.ObtenerValorGenerico("EstatusVotacion");
+
+				foreach (DataRow row in dt.Rows)
+				{
+					if (row["ValorGenerico"].ToString().ToLower().Contains("cerr"))
+					{
+						Response.Redirect("VotacionCerrada.aspx");
+						break;
+					}
+					else if (row["ValorGenerico"].ToString().ToLower().Contains("ganador"))
+					{
+						CargarResultado();
+						break;
+					}
+					else if (row["ValorGenerico"].ToString().ToLower().Contains("abier"))
+					{
+						Response.Redirect("../Index.aspx");
+						break;
+					}
+				}
+			}
+		}
+		private void CargarResultado()
         {
             try
             {

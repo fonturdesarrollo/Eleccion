@@ -51,7 +51,7 @@ namespace Eleccion
         {
             try
             {
-                DataSet ds = Candidatos.ObtenerCandiatos(Convert.ToInt32(Request.QueryString["cedulaCandidato"].ToString()));
+                DataSet ds = Candidatos.ObtenerCandidatos(Convert.ToInt32(Request.QueryString["cedulaCandidato"].ToString()));
                 this.gridDetalle.DataSource = ds.Tables[0];
                 this.gridDetalle.DataBind();
             }
