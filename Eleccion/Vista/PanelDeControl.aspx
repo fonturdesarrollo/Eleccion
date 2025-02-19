@@ -54,7 +54,6 @@
                                             <br />
                                             <br />
                                             <asp:TextBox runat="server" ID="txtCedula" Placeholder ="Cedula"></asp:TextBox>
-                                            <%--<ASP:RequiredFieldValidator id="RequiredFieldValidator4" runat="server" errormessage="Debe colocar la cedula"  controltovalidate="txtCedula" display="Dynamic" ForeColor ="Red"></ASP:RequiredFieldValidator>--%>
 										</div>
 									</section>
 							</div>
@@ -67,7 +66,7 @@
 											<header>
 												<h2>Resultados</h2>
 											</header>
-                                            <asp:LinkButton runat="server" ID="lnkResultados" Text="Resultados" PostBackUrl="~/Vista/Resultado.aspx" CssClass="button large icon solid fa-arrow-circle-right"  CausesValidation="false"></asp:LinkButton>
+                                            <asp:LinkButton runat="server" ID="lnkResultados" Text="Resultados" PostBackUrl="~/Vista/ResultadoSimpatia.aspx" CssClass="button large icon solid fa-arrow-circle-right"  CausesValidation="false"></asp:LinkButton>
 										</div>
 									</section>
 							</div>

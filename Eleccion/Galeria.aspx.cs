@@ -8,23 +8,29 @@ using System.Web.UI.WebControls;
 
 namespace Eleccion
 {
-    public partial class Index : Seguridad.SeguridadAuditoria
+    public partial class Index : System.Web.UI.Page
     {
-        protected new void Page_Load(object sender, EventArgs e)
-        {
-            if(!IsPostBack)
+		protected void Page_Load(object sender, EventArgs e)
+		{
+            try
             {
-                CSeguridad objetoSeguridad = new CSeguridad();
-                objetoSeguridad.SeguridadUsuarioDatosID = Convert.ToInt32(this.Session["UserId"].ToString());
-                if (objetoSeguridad.EsUsuarioAdministrador())
-                {
-                    lnkPanelDeControl.Visible = true;
-                }
-                else
-                {
-                    lnkPanelDeControl.Visible = false;
-                }
-                
+				if (!IsPostBack)
+				{
+					CSeguridad objetoSeguridad = new CSeguridad();
+					objetoSeguridad.SeguridadUsuarioDatosID = Convert.ToInt32(this.Session["UserId"].ToString());
+					if (objetoSeguridad.EsUsuarioAdministrador())
+					{
+						lnkPanelDeControl.Visible = true;
+					}
+					else
+					{
+						lnkPanelDeControl.Visible = false;
+					}
+				}
+			}
+            catch (Exception)
+            {
+				Response.Redirect("Index.aspx");                
             }
         }
     }

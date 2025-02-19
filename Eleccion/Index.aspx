@@ -41,7 +41,7 @@
 								<form id ="w" runat ="server">
 									<div class="6u 12u$(xsmall)">
                                         <asp:HiddenField runat ="server" ID ="hdnCodigoUsuario"  Value="0"/>
-										<asp:TextBox runat="server" ID ="txtClave"   textmode="Password" maxlength="25" placeholder ="Cédula"></asp:TextBox>
+										<asp:TextBox runat="server" ID="txtClave" textmode="Password" maxlength="25" placeholder="Cédula (sin puntos, comas o espacios)" onkeypress="return soloNumeros(event)"></asp:TextBox>
 										<ASP:RequiredFieldValidator id="chkClave" runat="server" errormessage="* Debe colocar la clave" width="132px" controltovalidate="txtClave" display="Dynamic" ForeColor ="Red"></ASP:RequiredFieldValidator>
 									</div>
 									<div class="6u 12u$(xsmall)">
@@ -69,12 +69,21 @@
 
 		<!-- Scripts -->
 
-			<script>
-				if ('addEventListener' in window) {
-					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
-					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
-				}
-			</script>
+     <script type="text/javascript">
+		if ('addEventListener' in window) {
+			window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+			document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+		 }
 
-	</body>
+         function soloNumeros(event) {
+             var charCode = (event.which) ? event.which : event.keyCode;
+
+             if (charCode != 13 && (charCode < 48 || charCode > 57)) {
+                 return false;
+			 }
+
+             return true;
+         }
+     </script>
+</body>
 </html>

@@ -43,7 +43,7 @@ namespace Eleccion
         {
             try
             {
-                DataSet ds = Voto.ObtenerGanadora(3);
+                DataSet ds = Voto.ObtenerGanadora(2);
                 this.gridDetalle.DataSource = ds.Tables[0];
                 this.gridDetalle.DataBind();
             }

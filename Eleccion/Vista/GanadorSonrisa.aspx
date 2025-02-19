@@ -33,7 +33,6 @@
 									<section class="box feature">
 										<div class="inner">
 											<div>
-												<asp:HyperLink runat="server" NavigateUrl="~/Vista/Ganador.aspx" Text="Reina"></asp:HyperLink>
 												<asp:HyperLink runat="server" NavigateUrl="~/Vista/GanadorSimpatia.aspx" Text="Simpatía"></asp:HyperLink>
 												<asp:HyperLink runat="server" NavigateUrl="~/Vista/GanadorActitud.aspx" Text="Actitud"></asp:HyperLink>
 												<br />

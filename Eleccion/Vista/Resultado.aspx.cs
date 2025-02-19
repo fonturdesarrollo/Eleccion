@@ -8,9 +8,9 @@ using System.Web.UI.WebControls;
 
 namespace Eleccion
 {
-    public partial class Resultado : Seguridad.SeguridadAuditoria
-    {
-        protected new void Page_Load(object sender, EventArgs e)
+    public partial class Resultado : System.Web.UI.Page
+	{
+        protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {

@@ -81,7 +81,7 @@ namespace Eleccion
 								agregado++;
 							}
 
-							if (registrados.Count >= 4)
+							if (registrados.Count >= 3)
 							{
 								resultado = true;
 							}

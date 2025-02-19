@@ -58,19 +58,13 @@
                                                                 <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Button runat="server" ID="btnVotar" AlternateText="Votar" OnClientClick="return Confirmacion();" ToolTip="Votar" Text="Votar" CssClass="button-large" CommandName="VotarDetalle" CommandArgument='<%# Eval("CandidatoID") %>' CausesValidation="false" /></pre>
                                                             </div>
                                                             <div style="margin-left: 50px;">
-                                                                <asp:CheckBox runat="server" ID="reina" Text="Reina" /><br />
-                                                                <asp:CheckBox runat="server" ID="simpatia" Text="Simpatia" /><br />
+                                                                <asp:CheckBox runat="server" ID="simpatia" Text="Simpatía" /><br />
                                                                 <asp:CheckBox runat="server" ID="actitud" Text="Actitud" /><br />
                                                                 <asp:CheckBox runat="server" ID="sonrisa" Text="Sonrisa" />      <br />                                                          
                                                             </div>
                                                         </div>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-<%--                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <pre style="width:300px;white-space:pre-wrap;text-align:center"><asp:Button runat="server" ID="btnVotar" AlternateText="Votar" OnClientClick="return Confirmacion();" ToolTip="Votar" Text="Votar" CssClass="button-large" CommandName="VotarDetalle" CommandArgument='<%# Eval("CandidatoID") %>' CausesValidation="false" /></pre>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>--%>
                                             </Columns>
                                         </asp:GridView>
                                     </section>

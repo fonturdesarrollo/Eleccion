@@ -31,7 +31,7 @@ namespace Seguridad
 					}
 					else if (row["ValorGenerico"].ToString().ToLower().Contains("ganador"))
 					{
-						Response.Redirect("Vista/Ganador.aspx");
+						Response.Redirect("Vista/GanadorSimpatia.aspx");
 						break;
 					}
 				}

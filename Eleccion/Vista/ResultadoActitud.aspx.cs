@@ -8,9 +8,9 @@ using System.Web.UI.WebControls;
 
 namespace Eleccion
 {
-    public partial class ResultadoActitud : Seguridad.SeguridadAuditoria
-    {
-        protected new void Page_Load(object sender, EventArgs e)
+    public partial class ResultadoActitud : System.Web.UI.Page
+	{
+        protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
@@ -21,7 +21,7 @@ namespace Eleccion
         {
             try
             {
-                DataSet ds = Voto.ObtenerResultados(3);
+                DataSet ds = Voto.ObtenerResultados(2);
                 this.gridDetalle.DataSource = ds.Tables[0];
                 this.gridDetalle.DataBind();
             }
